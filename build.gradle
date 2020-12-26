@@ -6,13 +6,24 @@ buildscript {
     dependencies {
         // Android plugin for gradle
         // http://google.github.io/android-gradle-dsl
-        classpath 'com.android.tools.build:gradle:3.1.0'
+        classpath 'com.android.tools.build:gradle:4.1.1'
     }
 }
 allprojects {
     repositories {
         google()
         jcenter()
+    }
+    subprojects {
+        afterEvaluate {
+            project ->
+                if (project.hasProperty("android")) {
+                    android {
+                        compileSdkVersion = 28
+                        buildToolsVersion = "29.0.2"
+                    }
+                }
+        }
     }
 }
 task clean(type: Delete) {

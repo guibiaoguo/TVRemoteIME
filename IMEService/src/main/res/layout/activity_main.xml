@@ -152,20 +152,5 @@
         android:layout_alignParentRight="true"
         android:layout_marginRight="20dp"
         android:orientation="vertical">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text="提示：如果有问题建议可加交流QQ群：7149348，如果喜欢本APP，可赞赏一下作者：）"
-            android:textColor="@color/white" />
-
-        <ImageView
-            android:id="@+id/ivReward"
-            android:layout_width="610px"
-            android:layout_height="352px"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
-            android:src="@drawable/reward" />
     </LinearLayout>
 </RelativeLayout>

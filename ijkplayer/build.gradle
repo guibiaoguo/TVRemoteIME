@@ -1,24 +1,26 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion '26.0.2'
+    compileSdkVersion 29
+    buildToolsVersion '29.0.2'
 
     defaultConfig {
         minSdkVersion 12
-        targetSdkVersion 15
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0.0"
     }
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:support-annotations:25.3.1'
-    implementation 'com.android.support:recyclerview-v7:25.3.1'
+    api fileTree(dir: 'libs', include: ['*.jar'])
+    api 'com.android.support:support-annotations:28.0.0'
+    //noinspection GradleCompatible
+    implementation 'com.android.support:recyclerview-v7:28.0.0'
 
-    compile 'tv.danmaku.ijk.media:ijkplayer-java:0.8.4'
-    compile 'tv.danmaku.ijk.media:ijkplayer-exo:0.8.4'
+    api 'tv.danmaku.ijk.media:ijkplayer-java:0.8.8'
+//    compile 'tv.danmaku.ijk.media:ijkplayer-armv7a:0.8.4'
+    api 'tv.danmaku.ijk.media:ijkplayer-exo:0.8.8'
     implementation project(':thunder')
     //compile 'tv.danmaku.ijk.media:ijkplayer-armv7a:0.8.4'
     //compile 'tv.danmaku.ijk.media:ijkplayer-arm64:0.8.4'
