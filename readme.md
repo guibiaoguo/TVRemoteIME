@@ -55,7 +55,7 @@
 源名称2 = 源地址 
 
 [电视台名称]  
-源名称 = 源地址  
+源名称 = 源地址
 </pre></code>
 
 ## 视频投屏说明  
@@ -64,13 +64,13 @@
 ## 控制界面示例截图  
 注： 输入控制端不需要安装任何APK应用，直接浏览器操作  
 
-![示例截图](https://raw.githubusercontent.com/kingthy/TVRemoteIME/master/released/screenshot.png "控制界面示例截图")    
+![示例截图](https://raw.githubusercontent.com/guibiaoguo/TVRemoteIME/master/released/screenshot.png "控制界面示例截图")    
 
-![示例截图](https://raw.githubusercontent.com/kingthy/TVRemoteIME/master/released/screenshot_2.png "控制界面示例截图")    
+![示例截图](https://raw.githubusercontent.com/guibiaoguo/TVRemoteIME/master/released/screenshot_2.png "控制界面示例截图")    
 
-![示例截图](https://raw.githubusercontent.com/kingthy/TVRemoteIME/master/released/screenshot_3.png "控制界面示例截图")    
+![示例截图](https://raw.githubusercontent.com/guibiaoguo/TVRemoteIME/master/released/screenshot_3.png "控制界面示例截图")    
 
-![示例截图](https://raw.githubusercontent.com/kingthy/TVRemoteIME/master/released/screenshot_4.png "控制界面示例截图")    
+![示例截图](https://raw.githubusercontent.com/guibiaoguo/TVRemoteIME/master/released/screenshot_4.png "控制界面示例截图")    
 
 
 # 版本历史 
@@ -98,9 +98,8 @@
 8、 V1.4.1版本    
 于2018-4-30发布，支持更改投屏名称、TV端键盘添加隐藏键、修复已知BUG。
 
-**小盒精灵因抄袭事件，以后不会再维护更新开源代码，也就是说V1.4.1版本属于最后的开源版本**  
-[关于小盒精灵被抄袭的事件申明] (https://www.v2ex.com/t/452320)  
-
+9、v1.4.2版本
+修复升级版本错误
 
 # 引用第三方包/资源说明
 1、[NanoHttpd](https://github.com/NanoHttpd/nanohttpd "NanoHttpd")  用于实现HTTP WEB服务  
@@ -117,15 +116,3 @@
 6、[AdbLib](https://github.com/cgutman/AdbLib "AdbLib") 用于连接adb服务，在非输入法状态下的实现遥控功能  
 
 7、[DroidDLNA](https://github.com/offbye/DroidDLNA "DroidDLNA") 用于实现DLNA视频投屏服务，内部核心采用[Cling](https://github.com/4thline/cling "cling") DLNA库   
-
-# 衍生项目  
-由小盒精灵衍生出来的APP项目  
-1、[云播投屏](https://github.com/yunbotouping/- "云播投屏") 
-
-# 交流QQ群  
-QQ群号：7149348， 加入QQ群可以分享直播源、反馈问题及建议。  
-
-# 赞赏一下  
-如果您觉得本应用项目对你有帮助，可以赞赏一下作者：）。万水千山总是情，一块十块都是情！  
-
-![赞赏二维码](https://raw.githubusercontent.com/kingthy/TVRemoteIME/master/released/reward.png "赞赏二维码")    
