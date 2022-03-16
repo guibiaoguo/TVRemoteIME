@@ -2,8 +2,6 @@ package com.android.tvremoteime.http;
 
 import android.util.Log;
 
-import com.android.tvremoteime.Environment;
-
 import org.apache.http.util.CharArrayBuffer;
 
 import java.io.BufferedReader;
@@ -11,8 +9,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.net.URI;
 import java.net.URL;
 
 import javax.net.ssl.HttpsURLConnection;

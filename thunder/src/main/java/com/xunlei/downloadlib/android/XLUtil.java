@@ -224,6 +224,7 @@ public class XLUtil {
         return null;
     }
 
+    @SuppressLint("MissingPermission")
     public static String getIMEI(Context context) {
         Exception e;
         if (context == null) {
@@ -234,7 +235,7 @@ public class XLUtil {
             return str;
         }
         String deviceId;
-        TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService("phone");
+        TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         if (telephonyManager != null) {
             try {
                 deviceId = telephonyManager.getDeviceId();
@@ -309,7 +310,7 @@ public class XLUtil {
         if (context == null) {
             return null;
         }
-        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService("connectivity");
+        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         if (connectivityManager == null) {
             return null;
         }
@@ -325,7 +326,7 @@ public class XLUtil {
             XLLog.e(TAG, "getSSID, context invalid");
             return null;
         }
-        WifiManager wifiManager = (WifiManager) context.getSystemService("wifi");
+        WifiManager wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
         if (wifiManager != null) {
             WifiInfo connectionInfo = wifiManager.getConnectionInfo();
             if (connectionInfo != null) {
@@ -340,7 +341,7 @@ public class XLUtil {
             XLLog.e(TAG, "getBSSID, context invalid");
             return null;
         }
-        WifiManager wifiManager = (WifiManager) context.getSystemService("wifi");
+        WifiManager wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
         if (wifiManager != null) {
             try {
                 WifiInfo connectionInfo = wifiManager.getConnectionInfo();
@@ -358,7 +359,7 @@ public class XLUtil {
             XLLog.e(TAG, "getNetworkTypeComplete, context invalid");
             return 0;
         }
-        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService("connectivity");
+        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         if (connectivityManager == null) {
             return 0;
         }
@@ -406,7 +407,7 @@ public class XLUtil {
             XLLog.e(TAG, "getNetworkTypeSimple, context invalid");
             return 0;
         }
-        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService("connectivity");
+        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         if (connectivityManager == null) {
             return 1;
         }
@@ -508,10 +509,10 @@ public class XLUtil {
 
     public static NetWorkCarrier getNetWorkCarrier(Context context) {
         if (context != null) {
-            TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService("phone");
+            TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
             if (telephonyManager != null) {
                 try {
-                    String subscriberId = telephonyManager.getSubscriberId();
+                    @SuppressLint("MissingPermission") String subscriberId = telephonyManager.getSubscriberId();
                     if(subscriberId != null) {
                         if (subscriberId.startsWith("46000") || subscriberId.startsWith("46002")) {
                             return NetWorkCarrier.CMCC;

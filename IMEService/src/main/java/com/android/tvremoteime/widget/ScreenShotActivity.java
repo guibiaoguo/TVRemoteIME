@@ -6,7 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.graphics.PixelFormat;
+import android.graphics.ImageFormat;
 import android.graphics.drawable.ColorDrawable;
 import android.hardware.display.DisplayManager;
 import android.hardware.display.VirtualDisplay;
@@ -18,10 +18,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.SystemClock;
-import android.support.annotation.RequiresApi;
 import android.support.v4.os.AsyncTaskCompat;
-import android.text.TextUtils;
 import android.view.Window;
 
 import com.android.tvremoteime.Environment;
@@ -84,7 +81,7 @@ public class ScreenShotActivity extends Activity {
                         mImageReader = ImageReader.newInstance(
                                 getScreenWidth(),
                                 getScreenHeight(),
-                                PixelFormat.RGBA_8888,
+                                ImageFormat.FLEX_RGBA_8888,
                                 1);
                         startScreenShot();
                 }else{

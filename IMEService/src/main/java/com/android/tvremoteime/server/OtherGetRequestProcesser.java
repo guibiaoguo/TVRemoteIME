@@ -4,10 +4,8 @@ import android.content.Context;
 import android.os.Build;
 import android.os.Environment;
 import android.os.StatFs;
-import android.text.TextUtils;
 
 import com.android.tvremoteime.AppPackagesHelper;
-import com.android.tvremoteime.VideoPlayHelper;
 
 import java.io.File;
 import java.util.Map;

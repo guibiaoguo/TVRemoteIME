@@ -5,10 +5,10 @@ import android.content.Intent;
 import android.net.Uri;
 import android.text.TextUtils;
 
-import fi.iki.elonen.NanoHTTPD;
+import java.net.URLDecoder;
+
 import player.XLVideoPlayActivity;
 import xllib.DownloadManager;
-import xllib.FileUtils;
 
 /**
  * Created by kingt on 2018/2/22.
@@ -16,6 +16,14 @@ import xllib.FileUtils;
 
 public class VideoPlayHelper {
     public static void playUrl(Context context, String url, int videoIndex, boolean useSystem){
+        if (url!=null){
+            try {
+                url = URLDecoder.decode(url, "utf-8");
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+        }
         if(useSystem) {
             //外部播放
             DownloadManager downloadManager = DownloadManager.instance();
