@@ -36,7 +36,9 @@ jobs:
         path: keystore # 仓库的根目录名
     # 打包release
     - name: Build with Gradle
-      run: bash ./gradlew assembleRelease
+      run: |
+        bash ./gradlew assembleRelease
+        tree
     # 创建release
     - name: Create Release
       id: create_release
