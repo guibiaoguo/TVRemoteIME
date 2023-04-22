@@ -1,14 +1,21 @@
 name: Android CI
 
 # 触发器
+#on:
+#  push:
+#    tags:
+#      - v*
+#  pull_request:
+#    tags:
+#      - v*
 on:
-  push:
-    tags:
-      - v*
-  pull_request:
-    tags:
-      - v*
-
+  repository_dispatch:
+  workflow_dispatch:
+    inputs:
+      ssh:
+        description: 'SSH connection to Actions'
+        required: false
+        default: 'false'
 jobs:
   build:
 
