@@ -39,9 +39,9 @@ jobs:
     - name: Build with Gradle
       run: |
         chmod +x gradlew
-        #APP_MODULE=IMEService
         ./gradlew assembleRelease --build-cache --parallel --daemon --warning-mode all
          APP_BUILD_APK=$(find ./ -regex .*/.*/.*/release/.*.apk)
+         #APP_MODULE=IMEService
          #APP_BUILD_APK=$(find ${APP_MODULE}/build -regex .*/.*/release/.*.apk)
          APP_BUILD_APK=${APP_BUILD_APK:2}
          echo ${APP_BUILD_APK}
