@@ -51,7 +51,6 @@ jobs:
     - name: Generate release tag
       id: tag
       run: |
-        #echo "::set-output name=release_tag::$(date +"%Y.%m.%d-%H%M")"
         echo "release_tag=$(date +"%Y.%m.%d-%H%M")" >> $GITHUB_OUTPUT
       # 创建release
     - name: Create Release
