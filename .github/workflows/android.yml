@@ -1,14 +1,14 @@
 name: Android CI
 
 # 触发器
-#on:
-#  push:
-#    tags:
-#      - v*
-#  pull_request:
-#    tags:
-#      - v*
 on:
+  push:
+    tags:
+      - v*
+  pull_request:
+    tags:
+      - v*
+#on:
   repository_dispatch:
   workflow_dispatch:
     inputs:
@@ -51,8 +51,9 @@ jobs:
     - name: Generate release tag
       id: tag
       run: |
-        echo "::set-output name=release_tag::$(date +"%Y.%m.%d-%H%M")"
-    # 创建release
+        #echo "::set-output name=release_tag::$(date +"%Y.%m.%d-%H%M")"
+        echo "release_tag=$(date +"%Y.%m.%d-%H%M")" >> $GITHUB_OUTPUT
+      # 创建release
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
