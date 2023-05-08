@@ -37,11 +37,10 @@ jobs:
     # 打包release
     - name: Build with Gradle
       run: |
-        bash ./gradlew assembleRelease
         chmod +x gradlew
         APP_MODULE=IMEService
         echo "APP_MODULE=${APP_MODULE}"
-        ./gradlew assembleAppRelease --build-cache --parallel --daemon --warning-mode all    
+        ./gradlew assembleRelease --build-cache --parallel --daemon --warning-mode all    
          APP_BUILD_APK=$(find $APP_WORKSPACE/${APP_MODULE}/build -regex .*/${APP_MODULE}/release/.*.apk)
          echo "APP_BUILD_APK=${APP_BUILD_APK}" >> $GITHUB_ENV
     - name: Generate release tag
