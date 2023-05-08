@@ -4,10 +4,24 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/TVRemoteIME.iml" filepath="$PROJECT_DIR$/.idea/modules/TVRemoteIME.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/AdbLib/TVRemoteIME.AdbLib.iml" filepath="$PROJECT_DIR$/.idea/modules/AdbLib/TVRemoteIME.AdbLib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/AdbLib/TVRemoteIME.AdbLib.main.iml" filepath="$PROJECT_DIR$/.idea/modules/AdbLib/TVRemoteIME.AdbLib.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/AdbLib/TVRemoteIME.AdbLib.test.iml" filepath="$PROJECT_DIR$/.idea/modules/AdbLib/TVRemoteIME.AdbLib.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/DroidDLNA/TVRemoteIME.DroidDLNA.iml" filepath="$PROJECT_DIR$/.idea/modules/DroidDLNA/TVRemoteIME.DroidDLNA.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/DroidDLNA/TVRemoteIME.DroidDLNA.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/DroidDLNA/TVRemoteIME.DroidDLNA.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/DroidDLNA/TVRemoteIME.DroidDLNA.main.iml" filepath="$PROJECT_DIR$/.idea/modules/DroidDLNA/TVRemoteIME.DroidDLNA.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/DroidDLNA/TVRemoteIME.DroidDLNA.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/DroidDLNA/TVRemoteIME.DroidDLNA.unitTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/IMEService/TVRemoteIME.IMEService.iml" filepath="$PROJECT_DIR$/.idea/modules/IMEService/TVRemoteIME.IMEService.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/IMEService/TVRemoteIME.IMEService.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/IMEService/TVRemoteIME.IMEService.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/IMEService/TVRemoteIME.IMEService.main.iml" filepath="$PROJECT_DIR$/.idea/modules/IMEService/TVRemoteIME.IMEService.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/IMEService/TVRemoteIME.IMEService.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/IMEService/TVRemoteIME.IMEService.unitTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/ijkplayer/TVRemoteIME.ijkplayer.iml" filepath="$PROJECT_DIR$/.idea/modules/ijkplayer/TVRemoteIME.ijkplayer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ijkplayer/TVRemoteIME.ijkplayer.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/ijkplayer/TVRemoteIME.ijkplayer.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ijkplayer/TVRemoteIME.ijkplayer.main.iml" filepath="$PROJECT_DIR$/.idea/modules/ijkplayer/TVRemoteIME.ijkplayer.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ijkplayer/TVRemoteIME.ijkplayer.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/ijkplayer/TVRemoteIME.ijkplayer.unitTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/thunder/TVRemoteIME.thunder.iml" filepath="$PROJECT_DIR$/.idea/modules/thunder/TVRemoteIME.thunder.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/thunder/TVRemoteIME.thunder.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/thunder/TVRemoteIME.thunder.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/thunder/TVRemoteIME.thunder.main.iml" filepath="$PROJECT_DIR$/.idea/modules/thunder/TVRemoteIME.thunder.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/thunder/TVRemoteIME.thunder.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/thunder/TVRemoteIME.thunder.unitTest.iml" />
     </modules>
   </component>
 </project>

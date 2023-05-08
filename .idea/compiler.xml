@@ -2,10 +2,10 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel target="1.7">
-      <module name="TVRemoteIME.DroidDLNA" target="1.8" />
-      <module name="TVRemoteIME.ijkplayer" target="1.8" />
-      <module name="TVRemoteIME.IMEService" target="1.8" />
-      <module name="TVRemoteIME.thunder" target="1.8" />
+      <module name="TVRemoteIME.DroidDLNA" target="11" />
+      <module name="TVRemoteIME.ijkplayer" target="11" />
+      <module name="TVRemoteIME.IMEService" target="11" />
+      <module name="TVRemoteIME.thunder" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>
