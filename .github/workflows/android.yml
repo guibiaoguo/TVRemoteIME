@@ -20,13 +20,14 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    # 设置jdk环境为 11
+    # 设置jdk环境为 17
     steps:
     - uses: actions/checkout@v2
-    - name: set up JDK 11
+    - name: set up JDK 17
       uses: actions/setup-java@v1
       with:
-        java-version: 11
+        java-version: 17
+        distribution: 'temurin'
     # 获取打包秘钥
     - name: Checkout Android Keystore
       uses: actions/checkout@v2
