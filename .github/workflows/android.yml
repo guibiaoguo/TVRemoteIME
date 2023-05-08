@@ -41,7 +41,7 @@ jobs:
         APP_MODULE=IMEService
         echo "APP_MODULE=${APP_MODULE}"
         ./gradlew assembleRelease --build-cache --parallel --daemon --warning-mode all    
-         APP_BUILD_APK=$(find ${APP_MODULE}/build -regex .*/${APP_MODULE}/release/.*.apk)
+         APP_BUILD_APK=$(find ${APP_MODULE}/build -regex .*/.*/release/.*.apk)
          echo "APP_BUILD_APK=${APP_BUILD_APK}" >> $GITHUB_ENV
     - name: Generate release tag
       id: tag
