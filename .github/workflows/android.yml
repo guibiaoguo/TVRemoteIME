@@ -53,8 +53,8 @@ jobs:
         #令牌的权限仅限于包含您的工作流程的仓库。 更多信息请参阅“GITHUB_TOKEN 的权限”。
         #在每个作业开始之前， GitHub 将为作业提取安装访问令牌。 令牌在作业完成后过期。
       with:
-        tag_name: ${{ github.ref }}
-        release_name: Release ${{ github.ref }}
+        tag_name: app-$(date +"%Y.%m.%d-%H%M")
+        release_name: Release $(date +"%Y.%m.%d-%H%M")
         draft: false
         prerelease: false
     # 获取apk版本号
