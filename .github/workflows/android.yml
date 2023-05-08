@@ -39,7 +39,7 @@ jobs:
     - name: Build with Gradle
       run: |
         chmod +x gradlew
-        find .*/build -regex .*/.*/release/.*.apk
+        find */build -regex .*/.*/release/.*.apk
         APP_MODULE=IMEService
         echo "APP_MODULE=${APP_MODULE}" >> $GITHUB_ENV
         echo "APP_RELEASE_NAME=${GITHUB_WORKSPACE##*/}" >> $GITHUB_ENV
