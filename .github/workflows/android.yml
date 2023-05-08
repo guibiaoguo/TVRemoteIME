@@ -20,7 +20,7 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    # 设置jdk环境为1.8
+    # 设置jdk环境为 11
     steps:
     - uses: actions/checkout@v2
     - name: set up JDK 11
