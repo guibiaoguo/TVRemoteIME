@@ -43,8 +43,7 @@ jobs:
         echo "APP_MODULE=${APP_MODULE}" >> $GITHUB_ENV
         echo "APP_RELEASE_NAME=${GITHUB_WORKSPACE##*/}" >> $GITHUB_ENV
         ./gradlew assembleRelease --build-cache --parallel --daemon --warning-mode all
-         test=$(find ./ -regex .*/.*/release/.*.apk)
-         echo "test=$test"
+        find ./ -regex .*/.*/.*/release/.*.apk
          APP_BUILD_APK=$(find ${APP_MODULE}/build -regex .*/.*/release/.*.apk)
          echo ${APP_BUILD_APK}
          echo "APP_BUILD_APK=${APP_BUILD_APK}" >> $GITHUB_ENV
