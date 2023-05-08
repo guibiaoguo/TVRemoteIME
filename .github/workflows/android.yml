@@ -39,7 +39,8 @@ jobs:
       run: |
         chmod +x gradlew
         APP_MODULE=IMEService
-        echo "APP_MODULE=${APP_MODULE}"
+        echo "APP_MODULE=${APP_MODULE}" >> $GITHUB_ENV
+        echo "APP_RELEASE_NAME=$GITHUB_WORKSPACE" >> $GITHUB_ENV
         ./gradlew assembleRelease --build-cache --parallel --daemon --warning-mode all    
          APP_BUILD_APK=$(find ${APP_MODULE}/build -regex .*/.*/release/.*.apk)
          echo "APP_BUILD_APK=${APP_BUILD_APK}" >> $GITHUB_ENV
@@ -83,7 +84,7 @@ jobs:
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }} # 上传网址，无需改动
         asset_path: ${{ env.APP_BUILD_APK }} # 上传路径
-        asset_name: ${{ GITHUB_WORKSPACE }}-${{steps.get-version.outputs.result}}.apk # 资源名
+        asset_name: ${{ env.APP_RELEASE_NAME }}-${{steps.get-version.outputs.result}}.apk # 资源名
         asset_content_type: application/vnd.android.package-archiv #资源类型
     # 存档打包的文件
     - name: Archive production artifacts
