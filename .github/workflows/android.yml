@@ -38,6 +38,15 @@ jobs:
     - name: Build with Gradle
       run: |
         bash ./gradlew assembleRelease
+        chmod +x gradlew
+        APP_MODULE=IMEService
+        echo "APP_MODULE=${APP_MODULE}"
+        ./gradlew assembleAppRelease --build-cache --parallel --daemon --warning-mode all    
+         APP_BUILD_APK=$(find $APP_WORKSPACE/${APP_MODULE}/build -regex .*/${APP_MODULE}/release/.*.apk)
+         echo "APP_BUILD_APK=${APP_BUILD_APK}" >> $GITHUB_ENV
+    - name: Generate release tag
+      id: tag
+      run: |
         echo "::set-output name=release_tag::$(date +"%Y.%m.%d-%H%M")"
     # 创建release
     - name: Create Release
@@ -74,7 +83,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }} # 上传网址，无需改动
-        asset_path: IMEService/build/outputs/apk/release/*.apk # 上传路径
+        asset_path: ${{ env.APP_BUILD_APK }} # 上传路径
         asset_name: LightTimetable-${{steps.get-version.outputs.result}}.apk # 资源名
         asset_content_type: application/vnd.android.package-archiv #资源类型
     # 存档打包的文件
@@ -82,4 +91,4 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: build
-        path: IMEService/build/outputs #将打包之后的文件全部上传（里面会有混淆的map文件）
+        path: ${{ env.APP_MODULE }}/build/outputs #将打包之后的文件全部上传（里面会有混淆的map文件）
