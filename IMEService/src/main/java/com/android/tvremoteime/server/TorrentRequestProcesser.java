@@ -2,20 +2,15 @@ package com.android.tvremoteime.server;
 
 import android.content.Context;
 import android.text.TextUtils;
-import android.util.Log;
 
 import com.android.tvremoteime.VideoPlayHelper;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.File;
 import java.util.Map;
 
 import fi.iki.elonen.NanoHTTPD;
-import xllib.DownloadTask;
-import xllib.PlayListItem;
+//import xllib.DownloadTask;
+//import xllib.PlayListItem;
 
 /**
  * Created by kingt on 2018/3/6.
@@ -23,7 +18,7 @@ import xllib.PlayListItem;
 
 public class TorrentRequestProcesser implements RequestProcesser  {
     private Context context;
-    private DownloadTask downloadTask = new DownloadTask();
+//    private DownloadTask downloadTask = new DownloadTask();
     public TorrentRequestProcesser(Context context){
         this.context = context;
     }
@@ -72,23 +67,24 @@ public class TorrentRequestProcesser implements RequestProcesser  {
     }
 
     private NanoHTTPD.Response responseTorrentFileList() {
-        downloadTask.setUrl(RemoteServerFileManager.getPlayTorrentFile().getAbsolutePath());
-        JSONObject data = new JSONObject();
-        try {
-            data.put("success", true);
-            JSONArray items = new JSONArray();
-            for(PlayListItem item : downloadTask.getPlayList()){
-                JSONObject playItem = new JSONObject();
-                playItem.put("name", item.getName());
-                playItem.put("index", item.getIndex());
-                playItem.put("size", item.getSize());
-                items.put(playItem);
-            }
-            data.put("files", items);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        return RemoteServer.createJSONResponse(NanoHTTPD.Response.Status.OK,  data.toString());
+//        downloadTask.setUrl(RemoteServerFileManager.getPlayTorrentFile().getAbsolutePath());
+//        JSONObject data = new JSONObject();
+//        try {
+//            data.put("success", true);
+//            JSONArray items = new JSONArray();
+//            for(PlayListItem item : downloadTask.getPlayList()){
+//                JSONObject playItem = new JSONObject();
+//                playItem.put("name", item.getName());
+//                playItem.put("index", item.getIndex());
+//                playItem.put("size", item.getSize());
+//                items.put(playItem);
+//            }
+//            data.put("files", items);
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//        return RemoteServer.createJSONResponse(NanoHTTPD.Response.Status.OK,  data.toString());
+        return RemoteServer.createJSONResponse(NanoHTTPD.Response.Status.OK,  "ok");
     }
 
     private boolean playTorrent(Map<String, String> params){

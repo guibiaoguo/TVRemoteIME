@@ -26,6 +26,8 @@ public class InputRequestProcesser implements RequestProcesser {
         if(session.getMethod() == NanoHTTPD.Method.POST){
             switch (fileName) {
                 case "/text":
+                case "/clipboard":
+                case "/paste":
                 case "/key":
                 case "/keydown":
                 case "/keyup":
@@ -42,6 +44,12 @@ public class InputRequestProcesser implements RequestProcesser {
             case "/text":
                 if (params.get("text") != null && mDataReceiver != null) {
                     mDataReceiver.onTextReceived(params.get("text"));
+                }
+                return RemoteServer.createPlainTextResponse(NanoHTTPD.Response.Status.OK,"ok");
+            case "/clipboard":
+                if (params.get("text") != null && params.get("code") != null&& mDataReceiver != null) {
+                    String text = mDataReceiver.onClipboardRecived(params.get("code"), params.get("text"));
+                    return RemoteServer.createPlainTextResponse(NanoHTTPD.Response.Status.OK,text);
                 }
                 return RemoteServer.createPlainTextResponse(NanoHTTPD.Response.Status.OK,"ok");
             case "/key":

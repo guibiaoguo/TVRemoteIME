@@ -1,2 +1,6 @@
 // List all modules in root project
-include ':IMEService', ':thunder', ':ijkplayer', ':AdbLib', ':DroidDLNA'
+include ':IMEService'
+//include ':thunder'
+//include ':ijkplayer'
+include ':AdbLib'
+//include ':DroidDLNA'

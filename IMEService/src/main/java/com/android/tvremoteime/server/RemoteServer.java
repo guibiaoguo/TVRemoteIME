@@ -40,6 +40,8 @@ public class RemoteServer extends NanoHTTPD
          * @param text
          */
         void onTextReceived(String text);
+
+        String onClipboardRecived(String code, String text);
     }
 
     public static int serverPort = 9978;

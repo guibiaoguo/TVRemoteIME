@@ -11,11 +11,13 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputConnection;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.tvremoteime.adb.AdbHelper;
 import com.android.tvremoteime.server.RemoteServer;
@@ -39,6 +41,7 @@ public class IMEService extends InputMethodService implements View.OnClickListen
 	private TextView  addressView = null;
 
 	private RemoteServer mServer = null;
+	private LinearLayout numLine = null;
 	private LinearLayout qweLine = null;
 	private LinearLayout asdLine = null;
 	private LinearLayout zxcLine = null;
@@ -53,19 +56,22 @@ public class IMEService extends InputMethodService implements View.OnClickListen
 
 	final Handler handler = new Handler();
 
+	private ClipboardHelper clipboardHelper;
+	private EditText editText;
+	private int length = 0;
+
 	@Override
 	public void onCreate() {
 		super.onCreate();
-
 		//android.os.Debug.waitForDebugger();
 		Environment.initToastHandler();
-
+		clipboardHelper = new ClipboardHelper(this);
 		RemoteServerFileManager.resetBaseDir(this);
 		startRemoteServer();
-		DLNAUtils.startDLNAService(this.getApplicationContext());
+//		DLNAUtils.startDLNAService(this.getApplicationContext());
 		new AutoUpdateManager(this, this.handler);
-		//xllib.DownloadManager.instance().init(this);
-
+//		xllib.DownloadManager.instance().init(this);
+		FtpUtils.startFtpService(this.getApplicationContext());
 	}
 
 	@Override
@@ -77,14 +83,24 @@ public class IMEService extends InputMethodService implements View.OnClickListen
 
 		capsOn = true;
 		btnCaps = mInputView.findViewById(R.id.btnCaps);
+		numLine = mInputView.findViewById(R.id.numLine);
 		qweLine = mInputView.findViewById(R.id.qweLine);
 		asdLine = mInputView.findViewById(R.id.asdLine);
 		zxcLine = mInputView.findViewById(R.id.zxcLine);
-
+		editText = mInputView.findViewById(R.id.copyText);
+		editText.setFocusable(true);
+		editText.setFocusableInTouchMode(true);
+		editText.requestFocus();
+		editText.setCursorVisible(true);
+		editText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+			@Override
+			public void onFocusChange(View view, boolean b) {
+				editText.setSelection(editText.getText().length());
+			}
+		});
 		helpDialog = mInputView.findViewById(R.id.helpDialog);
 		qrCodeImage = helpDialog.findViewById(R.id.ivQRCode);
 		addressView = helpDialog.findViewById(R.id.tvAddress);
-
 		toggleCapsState(true);
 
         return mInputView; 
@@ -180,7 +196,9 @@ public class IMEService extends InputMethodService implements View.OnClickListen
 								//ic.performContextMenuAction(android.R.id.selectAll);
 								//ic.commitText("", 1);
 							}
-						}else {
+							editText.setText("");
+							editText.setSelection(0);
+						} else {
 							final int kc = KeyEvent.keyCodeFromString(keyCode);
 							if(kc != KeyEvent.KEYCODE_UNKNOWN){
 								if(mInputView != null && KeyEventUtils.isKeyboardFocusEvent(kc) && mInputView.isShown()){
@@ -226,8 +244,31 @@ public class IMEService extends InputMethodService implements View.OnClickListen
 				@Override
 				public void onTextReceived(String text) {
 					if (text != null) {
-						if(!isSendToAdbService(text))commitText(text);
+						if(!isSendToAdbService(text)) {
+							commitText(text);
+							String msg = editText.getText().toString().substring(0,length) + text + editText.getText().toString().substring(length);
+							length=length + text.length();
+							handler.postDelayed(new Runnable() {
+								@Override
+								public void run() {
+									editText.setText(msg);
+								}
+							},200);
+						}
 					}
+				}
+
+				@Override
+				public String onClipboardRecived(String code, String text) {
+					if (code.equals("copy")) {
+						clipboardHelper.copyText(text);
+						return text;
+					}
+					else if(code.equals("paste")) {
+						text = clipboardHelper.getCopiedText();
+						return text;
+					}
+					return "";
 				}
 			});
 			try {
@@ -281,8 +322,9 @@ public class IMEService extends InputMethodService implements View.OnClickListen
             Log.i(TAG, "远程输入服务已停止！");
 			mServer.stop();
 		}
-		DLNAUtils.stopDLNAService();
+//		DLNAUtils.stopDLNAService();
 		AdbHelper.stopService();
+		FtpUtils.stopFtpService();
 		Environment.toastInHandler(this, getString(R.string.app_name)  + "服务已停止");
     	super.onDestroy();    	
     }
@@ -429,17 +471,55 @@ public class IMEService extends InputMethodService implements View.OnClickListen
 				this.finishInput();
 			}else {
 				commitText(((Button) v).getText().toString());
+				String text = ((Button) v).getText().toString();
+				String msg = editText.getText().toString().substring(0,length) + text + editText.getText().toString().substring(length);
+				length=length + text.length();
+				editText.setText(msg);
 			}
 		}else if(v instanceof ImageButton){
+			String msg = "";
 			switch (v.getId()){
 				case R.id.btnEnter:
 					sendKeyCode(KeyEvent.KEYCODE_ENTER);
 					break;
 				case R.id.btnSpace:
+					msg = editText.getText().toString().substring(0,length) + " " + editText.getText().toString().substring(length);
+					length++;
+					editText.setText(msg);
 					sendKeyCode(KeyEvent.KEYCODE_SPACE);
 					break;
 				case R.id.btnDelete:
+					if (length>0)
+						msg = editText.getText().toString().substring(0,length-1) + "" + editText.getText().toString().substring(length);
+					length--;
+					length = length < 0?0:length;
+					editText.setText(msg);
 					sendKeyCode(KeyEvent.KEYCODE_DEL);
+					break;
+				case R.id.btnForward:
+					length++;
+					length = length<editText.getText().length()?length:editText.getText().length();
+					sendKeyCode(KeyEvent.KEYCODE_DPAD_RIGHT);
+					break;
+				case R.id.btnBack:
+					length--;
+					length = length < 0?0:length;
+					sendKeyCode(KeyEvent.KEYCODE_DPAD_LEFT);
+					break;
+				case R.id.btnCopy:
+					clipboardHelper.copyText(editText.getText().toString());
+					Toast.makeText(this, "复制成功", Toast.LENGTH_SHORT).show();
+					break;
+				case R.id.btnPaste:
+					String text = clipboardHelper.getCopiedText();
+					commitText(text);
+					msg = editText.getText().toString().substring(0,length) + text + editText.getText().toString().substring(length);
+					length=length + text.length();
+					editText.setText(msg);
+					Toast.makeText(this, "黏贴成功", Toast.LENGTH_SHORT).show();
+					break;
+				case R.id.btnTab:
+					sendKeyCode(KeyEvent.KEYCODE_TAB);
 					break;
 				case R.id.btnCaps:
 					toggleCapsState(resetCapsButtonState);
@@ -449,6 +529,11 @@ public class IMEService extends InputMethodService implements View.OnClickListen
 					break;
 			}
 		}
+		editText.setFocusable(true);
+		editText.setFocusableInTouchMode(true);
+		editText.requestFocus();
+		editText.setCursorVisible(true);
+		editText.setSelection(length);
 	}
 	@Override
 	public void onClick(View v) {
@@ -463,6 +548,7 @@ public class IMEService extends InputMethodService implements View.OnClickListen
 		capsOn = !capsOn;
 		if(resetCapsButtonState)
 			btnCaps.setBackgroundResource(capsOn ? R.drawable.key_on : R.drawable.key_off);
+		resetButtonChar(numLine);
 		resetButtonChar(qweLine);
 		resetButtonChar(asdLine);
 		resetButtonChar(zxcLine);
@@ -472,10 +558,20 @@ public class IMEService extends InputMethodService implements View.OnClickListen
 			View v = layout.getChildAt(i);
 			if(v instanceof Button){
 				Button b = (Button)v;
-				if(capsOn){
-					b.setText(b.getText().toString().toUpperCase());
-				}else{
-					b.setText(b.getText().toString().toLowerCase());
+				if (b.getText().toString().matches("[a-zA-Z]")) {
+					if (capsOn) {
+						b.setText(b.getText().toString().toUpperCase());
+					} else {
+						b.setText(b.getText().toString().toLowerCase());
+					}
+				} else if (b.getText().toString().matches("[\\d+·\\-=~!@#$%^&*()_+]")) {
+					String nums = "`1234567890-=?\"";
+					String marks = "~!@#$%^&*()_+/\'";
+					if (capsOn) {
+						b.setText(String.valueOf(nums.charAt(i)));
+					} else {
+						b.setText(String.valueOf(marks.charAt(i)));
+					}
 				}
 			}
 		}

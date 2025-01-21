@@ -61,6 +61,7 @@ function postKeyCode(keyCode){
 		console.log(data);
 	});
 }
+
 function postKeyActionCode(keyCode, keyAction){
 	curKeyCode = keyCode;
 	curKeyState = keyAction;
@@ -312,6 +313,27 @@ $("div.tab").on("click", function(){
 $("#btnCls").on("click",function(){
 	postKeyCode($(this).attr("data-key"))
 })
+$("#btnCopyTV").on("click",function(){
+	var $input=$("#inputarea");
+	var text=$input.val();
+	keyCode = $(this).attr("data-key");
+	if(""!=text){
+		$input.val("");
+		$.post("/clipboard",{text:text,code:keyCode},function(data){
+			console.log(data);
+		});
+	}
+})
+$("#btnPaste").on("click",function(){
+	var $input=$("#inputarea");
+	var text=$input.val();
+	keyCode = $(this).attr("data-key");
+    $.post("/clipboard",{text:text,code:keyCode},function(data){
+        console.log(data);
+        $input.val(data);
+    });
+
+})
 $(".direction, #btnDel").on(isSupportTouch ? "touchstart" : "mousedown",function(){
 		var o=$(this);
 		$("#direction-btns").css({"background-position":o.attr("data-bp")});
@@ -503,10 +525,10 @@ function upgrade() {
 	if(null != upgradeScript){
 		document.body.removeChild(upgradeScript);
 	}
-	var upgradeScript = document.createElement("script");
-	upgradeScript.type = "text/javascript";
-	upgradeScript.src = "http://tvremoteime-1255402058.cos.ap-guangzhou.myqcloud.com/upgrade.js";
-	document.body.appendChild(upgradeScript);
+//	var upgradeScript = document.createElement("script");
+//	upgradeScript.type = "text/javascript";
+//	upgradeScript.src = "http://tvremoteime-1255402058.cos.ap-guangzhou.myqcloud.com/upgrade.js";
+//	document.body.appendChild(upgradeScript);
 }
 reloadAppList();
 loadFileList("");

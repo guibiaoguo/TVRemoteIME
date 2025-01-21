@@ -9,7 +9,7 @@
 </head>
 <body>
 	<div class="container">
-		<div class="version">当前版本：<span class="version-code" id="curVer">1.0</span><a href="#" target="_blank" id="newVerUrl" style="margin-left:10px;display:none;">最新版本：<span class="version-code" id="newVer">1.0</span></a></div>
+		<div class="version">当前版本：<span class="version-code" id="curVer">1.0</span></div>
 	    <div class="tabs">
 		  <div class="tab cur" data-rel="controls">输入遥控</div>
 		  <div class="tab" data-rel="app">应用管理</div>
@@ -40,6 +40,8 @@
 		<div class="btn-line" data-tab="controls">
 		    <input type="button" value="退格" class="btn" id="btnDel" data-key='67' />
 		    <input type="button" value="清空" class="btn" id="btnCls" data-key='cls' />
+			<input type="button" value="复制到电视" class="btn" id="btnCopyTV" data-key='copy' />
+			<input type="button" value="复制电视剪贴板" class="btn" id="btnPaste" data-key='paste' />
 		</div>
 		<div class="app-panel hide" data-tab="app">
 			<div class="app-un">

@@ -4,24 +4,19 @@ import android.content.Context;
 import android.os.Environment;
 import android.text.TextUtils;
 
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.Array;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.Map;
 
 import fi.iki.elonen.NanoHTTPD;
-import xllib.FileUtils;
+//import xllib.FileUtils;
 
 /**
  * Created by kingt on 2018/1/11.
@@ -109,9 +104,11 @@ public class FileRequestProcesser  implements RequestProcesser {
                 if (file.isDirectory()) {
                     //item.put("total", 0);
                     dirs.put(item);
-                }else {
+                }
+                else {
                     item.put("size", file.length());
-                    item.put("isMedia", FileUtils.isMediaFile(file.getName()));
+                    item.put("isMedia",false);
+//                    item.put("isMedia", FileUtils.isMediaFile(file.getName()));
                     files.put(item);
                 }
             }

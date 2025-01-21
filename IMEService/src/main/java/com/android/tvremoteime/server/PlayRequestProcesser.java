@@ -3,13 +3,12 @@ package com.android.tvremoteime.server;
 import android.content.Context;
 import android.text.TextUtils;
 
-import com.android.tvremoteime.AppPackagesHelper;
 import com.android.tvremoteime.VideoPlayHelper;
 
 import java.util.Map;
 
 import fi.iki.elonen.NanoHTTPD;
-import player.settings.GlobalSettings;
+//import player.settings.GlobalSettings;
 
 /**
  * Created by kingt on 2018/1/7.
@@ -44,14 +43,14 @@ public class PlayRequestProcesser implements RequestProcesser {
                 }
                 return RemoteServer.createPlainTextResponse(NanoHTTPD.Response.Status.OK,"ok");
             case "/playStop":
-                xllib.DownloadManager.instance().taskInstance().stopTask();
+//                xllib.DownloadManager.instance().taskInstance().stopTask();
                 return RemoteServer.createPlainTextResponse(NanoHTTPD.Response.Status.OK,"ok");
             case "/changePlayFFI":
                 if(!TextUtils.isEmpty(params.get("speedInterval"))){
-                    try{
-                        GlobalSettings.FastForwardInterval = Integer.valueOf(params.get("speedInterval")) * 1000;
-                    }catch (NumberFormatException ignored) {
-                    }
+//                    try{
+//                        GlobalSettings.FastForwardInterval = Integer.valueOf(params.get("speedInterval")) * 1000;
+//                    }catch (NumberFormatException ignored) {
+//                    }
                 }
                 return RemoteServer.createPlainTextResponse(NanoHTTPD.Response.Status.OK,"ok");
             default:

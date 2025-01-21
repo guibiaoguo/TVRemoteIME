@@ -7,11 +7,14 @@
     android:focusable="true">
 
     <LinearLayout
-        android:id="@+id/topLine"
+        android:id="@+id/numLine"
         android:layout_width="match_parent"
         android:layout_height="@dimen/kb_key_height"
         android:layout_centerHorizontal="true"
         android:focusable="true">
+        <Button
+            style="@style/btn_input_style"
+            android:text="`" />
 
         <Button
             style="@style/btn_input_style"
@@ -52,16 +55,35 @@
         <Button
             style="@style/btn_input_style"
             android:text="0" />
+        <Button
+            style="@style/btn_input_style"
+            android:text="-" />
+        <Button
+            style="@style/btn_input_style"
+            android:text="=" />
+        <Button
+            style="@style/btn_input_style"
+            android:text="\?" />
+        <Button
+            style="@style/btn_input_style"
+            android:text='"' />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/qweLine"
         android:layout_width="match_parent"
         android:layout_height="@dimen/kb_key_height"
-        android:layout_below="@+id/topLine"
+        android:layout_below="@+id/numLine"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/kb_key_margin_top"
         android:focusable="true">
+
+        <ImageButton
+            android:id="@+id/btnTab"
+            style="@style/btn_input_style"
+            android:layout_width="wrap_content"
+            android:text="\t"
+            android:src="@drawable/baseline_tab_24" />
 
         <Button
             style="@style/btn_input_style"
@@ -102,6 +124,13 @@
         <Button
             style="@style/btn_input_style"
             android:text="P" />
+        <Button
+            style="@style/btn_input_style"
+            android:text="{" />
+        <Button
+            style="@style/btn_input_style"
+            android:text="}" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -149,11 +178,13 @@
             style="@style/btn_input_style"
             android:text="L" />
 
+
         <ImageButton
             android:id="@+id/btnDelete"
             style="@style/btn_input_style"
             android:layout_width="wrap_content"
             android:src="@drawable/delete_icon" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -200,15 +231,20 @@
             style="@style/btn_input_style"
             android:text="M" />
 
+        <Button
+            style="@style/btn_input_style"
+            android:text=":" />
+
         <ImageButton
-            android:id="@+id/btnEnter"
+            android:id="@+id/btnSpace"
             style="@style/btn_input_style"
             android:layout_width="wrap_content"
-            android:src="@drawable/enter_icon" />
+            android:src="@drawable/space_icon" />
+
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/bottomLine"
+        android:id="@+id/mark1Line"
         android:layout_width="match_parent"
         android:layout_height="@dimen/kb_key_height"
         android:layout_below="@+id/zxcLine"
@@ -226,13 +262,103 @@
 
         <Button
             style="@style/btn_input_style"
-            android:text=":" />
+            android:text="，" />
+
+        <Button
+            style="@style/btn_input_style"
+            android:text="。" />
+
+        <Button
+            style="@style/btn_input_style"
+            android:text="!" />
+
+        <Button
+            style="@style/btn_input_style"
+            android:text="！" />
+
+        <Button
+            style="@style/btn_input_style"
+            android:text="？" />
+
+        <Button
+            style="@style/btn_input_style"
+            android:text="|" />
 
         <ImageButton
-            android:id="@+id/btnSpace"
+            android:id="@+id/btnBack"
             style="@style/btn_input_style"
             android:layout_width="wrap_content"
-            android:src="@drawable/space_icon" />
+            android:src="@drawable/baseline_arrow_back_24" />
+
+        <ImageButton
+            android:id="@+id/btnForward"
+            style="@style/btn_input_style"
+            android:layout_width="wrap_content"
+            android:src="@drawable/baseline_arrow_forward_24" />
+
+        <ImageButton
+            android:id="@+id/btnEnter"
+            style="@style/btn_input_style"
+            android:layout_width="wrap_content"
+            android:src="@drawable/enter_icon" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/markLine"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@+id/mark1Line"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/kb_key_margin_top"
+        android:focusable="true">
+
+        <ImageButton
+            android:id="@+id/btnCopy"
+            style="@style/btn_input_style"
+            android:layout_width="wrap_content"
+            android:text="copy"
+            android:src="@drawable/baseline_content_copy_24" />
+        <ImageButton
+            android:id="@+id/btnPaste"
+            style="@style/btn_input_style"
+            android:layout_width="wrap_content"
+            android:text="paste"
+            android:src="@drawable/baseline_content_paste_24" />
+
+        <EditText
+            android:id="@+id/copyText"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_width="350dp"
+            android:layout_height="60dp"
+            android:background="@color/white"
+            android:textColor="@color/black"
+            android:text=""/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/bottomLine"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/kb_key_height"
+        android:layout_below="@+id/markLine"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/kb_key_margin_top"
+        android:focusable="true">
+
+        <Button
+            style="@style/btn_input_style"
+            android:text="," />
+
+        <Button
+            style="@style/btn_input_style"
+            android:text="." />
+
+        <Button
+            style="@style/btn_input_style"
+            android:text=":" />
+
+
 
         <Button
             style="@style/btn_input_style"

@@ -21,6 +21,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private ImageView qrCodeImage;
     private TextView addressView;
     private EditText dlnaNameText;
+    private EditText ftpUserText;
+    private EditText ftpPasswordText;
+    private EditText ftpPortText;
+    private EditText ftpHomeText;
 
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
     private static String[] PERMISSIONS_STORAGE = {
@@ -52,10 +56,15 @@ public class MainActivity extends Activity implements View.OnClickListener {
         qrCodeImage = this.findViewById(R.id.ivQRCode);
         addressView = this.findViewById(R.id.tvAddress);
         dlnaNameText = this.findViewById(R.id.etDLNAName);
-
+        ftpUserText = this.findViewById(R.id.etFtpName);
+        ftpPasswordText = this.findViewById(R.id.etFtpPassword);
+        ftpPortText = this.findViewById(R.id.etFtpPort);
+        ftpHomeText = this.findViewById(R.id.etFtpHome);
         this.setTitle(this.getResources().getString( R.string.app_name) + "  V" + AppPackagesHelper.getCurrentPackageVersion(this));
-        dlnaNameText.setText(DLNAUtils.getDLNANameSuffix(this.getApplicationContext()));
-
+//        dlnaNameText.setText(DLNAUtils.getDLNANameSuffix(this.getApplicationContext()));
+        ftpUserText.setText("anonymous");
+        ftpPortText.setText("2121");
+        ftpHomeText.setText(android.os.Environment.getExternalStorageDirectory().getPath());
         refreshQRCode();
     }
 
@@ -91,7 +100,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 Environment.toast(getApplicationContext(), "服务已手动启动，稍后可尝试访问控制端页面");
                 break;
             case R.id.btnSetDLNA:
-                DLNAUtils.setDLNANameSuffix(this.getApplicationContext(), dlnaNameText.getText().toString());
+//                DLNAUtils.setDLNANameSuffix(this.getApplicationContext(), dlnaNameText.getText().toString());
+                break;
+            case R.id.btnSetFtp:
+                FtpUtils.setFtpConfig(this.getApplicationContext(),ftpUserText.getText().toString(),ftpPasswordText.getText().toString(),ftpPortText.getText().toString(),ftpHomeText.getText().toString());
                 break;
         }
         refreshQRCode();

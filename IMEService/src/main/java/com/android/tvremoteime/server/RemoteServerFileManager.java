@@ -3,6 +3,7 @@ package com.android.tvremoteime.server;
 /**
  * Created by kingt on 2018/1/10.
  */
+
 import android.content.Context;
 import android.os.Environment;
 import android.text.TextUtils;
@@ -19,9 +20,8 @@ import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
 
-import fi.iki.elonen.*;
-import xllib.DownloadManager;
-import xllib.DownloadTask;
+import fi.iki.elonen.NanoHTTPD;
+//import xllib.DownloadTask;
 
 public class RemoteServerFileManager implements NanoHTTPD.TempFileManager {
     static File baseDir = new File(Environment.getExternalStorageDirectory(), "tvremoteime");
@@ -110,12 +110,12 @@ public class RemoteServerFileManager implements NanoHTTPD.TempFileManager {
             try{
                 if(!filesDir.exists())filesDir.mkdirs();
                 if(!tmpDataDir.exists())tmpDataDir.mkdirs();
-                DownloadTask.setBaseDirGetter(new DownloadTask.DownloadTaskBaseDirGetter() {
-                    @Override
-                    public File getBaseDir() {
-                        return playerCacheDir;
-                    }
-                });
+//                DownloadTask.setBaseDirGetter(new DownloadTask.DownloadTaskBaseDirGetter() {
+//                    @Override
+//                    public File getBaseDir() {
+//                        return playerCacheDir;
+//                    }
+//                });
             }catch (Exception ignored){}
             return new RemoteServerFileManager();
         }

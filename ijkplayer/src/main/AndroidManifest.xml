@@ -1,4 +1,5 @@
-<manifest>
+<manifest
+    package="com.afap.ijkplayer" >
 
     <application >
     </application>

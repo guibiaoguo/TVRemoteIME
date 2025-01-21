@@ -4,13 +4,12 @@ import android.content.Context;
 import android.text.TextUtils;
 
 import com.android.tvremoteime.AppPackagesHelper;
-import com.android.tvremoteime.VideoPlayHelper;
 
 import java.io.File;
 import java.util.Map;
 
 import fi.iki.elonen.NanoHTTPD;
-import xllib.FileUtils;
+//import xllib.FileUtils;
 
 /**
  * Created by kingt on 2018/1/7.
@@ -40,10 +39,10 @@ public class UploadRequestProcesser implements RequestProcesser {
                         //执行安装
                         AppPackagesHelper.installPackage(new File(localFilename), this.context);
                     }
-                    else if (FileUtils.isMediaFile(localFilename)){
-                        //执行播放
-                        VideoPlayHelper.playUrl(this.context, localFilename, 0, "true".equalsIgnoreCase(params.get("useSystem")));
-                    }
+//                    else if (FileUtils.isMediaFile(localFilename)){
+//                        //执行播放
+//                        VideoPlayHelper.playUrl(this.context, localFilename, 0, "true".equalsIgnoreCase(params.get("useSystem")));
+//                    }
                 }
             }
         }
