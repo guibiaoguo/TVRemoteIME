@@ -4,6 +4,7 @@ import org.apache.ftpserver.ConnectionConfig;
 import org.apache.ftpserver.FtpServer;
 import org.apache.ftpserver.FtpServerFactory;
 import org.apache.ftpserver.ftplet.Authority;
+import org.apache.ftpserver.ftplet.FtpException;
 import org.apache.ftpserver.ftplet.Ftplet;
 import org.apache.ftpserver.ftplet.User;
 import org.apache.ftpserver.ftplet.UserManager;
@@ -105,7 +106,7 @@ public class SimpleFtpServer {
     public SimpleFtpServer addUser(User user) {
         try {
             getUserManager().save(user);
-        } catch (org.apache.ftpserver.ftplet.FtpException e) {
+        } catch (FtpException e) {
             e.printStackTrace();
         }
         return this;
@@ -137,7 +138,7 @@ public class SimpleFtpServer {
     public SimpleFtpServer delUser(String userName) {
         try {
             getUserManager().delete(userName);
-        } catch (org.apache.ftpserver.ftplet.FtpException e) {
+        } catch (FtpException e) {
             e.printStackTrace();
         }
         return this;
@@ -214,7 +215,7 @@ public class SimpleFtpServer {
         try {
             ftpServer = serverFactory.createServer();
             ftpServer.start();
-        } catch (org.apache.ftpserver.ftplet.FtpException e) {
+        } catch (FtpException e) {
             e.printStackTrace();
         }
     }
